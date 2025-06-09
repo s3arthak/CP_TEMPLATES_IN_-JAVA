@@ -1,0 +1,140 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.util.*;
+
+public class FenWick{
+static class FastReader {
+BufferedReader br;
+StringTokenizer st;
+public FastReader() {br=new BufferedReader(new InputStreamReader(System.in));}
+String next() {while (st == null || !st.hasMoreElements()){try {st = new StringTokenizer(br.readLine());}catch(IOException e){e.printStackTrace();}}return st.nextToken();}
+int nextInt() {return Integer.parseInt(next());}
+long nextLong() {return Long.parseLong(next());}
+double nextDouble() {return Double.parseDouble(next());}}
+FastReader sc = new FastReader();
+PrintWriter out = new PrintWriter(System.out);
+
+static final long modL= 9223372036854775783L;
+static final int mod= (int)1e9 + 7;
+static final int max=Integer.MAX_VALUE;
+static final long INF =(long)1e63 -1 ;
+static final int min=Integer.MIN_VALUE;
+static final BigDecimal pi = new BigDecimal("3.141592653589793238");
+
+int ini(){return sc.nextInt();}
+long inl(){return sc.nextLong();}
+String ins(){return sc.next();}
+char inch(){return sc.next().charAt(0);}
+void inArr(int[]a){for(int i=0;i<a.length;i++){a[i] = sc.nextInt();}}
+void inArr(char[]a){for(int i=0;i<a.length;i++){a[i]=sc.next().charAt(i);}}
+void inArr(long[] a){for(int i=0;i<a.length;i++){a[i]=sc.nextLong();}}
+void inArr(String[] a){for (int i = 0; i < a.length; i++){a[i] = sc.next();}}
+void inList(ArrayList<Integer>a){for(int i=0;i<a.size();i++){a.add(sc.nextInt());}}
+void inmat(int [][]a){for(int i=0;i<a.length;i++){for(int j=0;j<a[0].length;j++){a[i][j]=sc.nextInt();}}}
+void inmat(long [][]a){for(int i=0;i<a.length;i++){for(int j=0;j<a[0].length;j++){a[i][j]=sc.nextLong();}}}
+void inmat(char[][]a){for(int i=0;i<a.length;i++){for(int j=0;j<a[0].length;j++){a[i][j]=sc.next().charAt(0);}}}
+void inMat(char[][]a){for(int i=0;i<a.length;i++){String s=ins(); a[i]= s.toCharArray();}}
+void DEBUG(Object... args) {for (Object arg : args) {if (arg instanceof int[]) {out.println(java.util.Arrays.toString((int[]) arg));} else if (arg instanceof long[]) {System.out.println(java.util.Arrays.toString((long[]) arg)); }else if (arg instanceof double[]){out.println(java.util.Arrays.toString((double[]) arg));} else if (arg instanceof Object[]) {System.out.println(java.util.Arrays.deepToString((Object[]) arg));}else {out.println(arg);}}}
+
+void yes(){out.println("Yes");}
+void no(){out.println("No");}
+void pl(){out.println();}
+void pl(int x){out.println(x);}
+void pl(double x){out.println(x);}
+void pl(long x){out.println(x);}
+void pl(char x){out.println(x);}
+void pl(String x){out.println(x);}
+void pArr(int[] a){for(int i=0;i<a.length;i++){out.print(a[i]+" ");} pl();}
+void pArr(long[]a){for(int i=0;i<a.length;i++){out.print(a[i]+" "); pl();}}
+void pArr(ArrayList<Integer> a){for(int i=0; i<a.size();i++){out.print(a.get(i)+" ");}pl();}
+void pArr(int [][]a){for(int i=0;i<a.length;i++){for(int j=0;j<a[0].length;j++){out.print(a[i][j]+" ");} pl();} pl();}
+
+int max(int a,int b){return Math.max(a, b);}
+int min(int a,int b){return Math.min(a, b);}
+long max(long a,long b){return Math.max(a, b);}
+long min(long a,long b){return Math.min(a, b);}
+int ceil(int x,int y){int x1=(int)Math.ceil((double)x /(double)y); return x1;}
+long ceil(long x,long y){long x1=(long)Math.ceil((double)x /(double)y);return x1;}
+double ceil( double x){ return Math.log(x)/ Math.log(2);}
+long floor(long x,long y){long x1=(long)Math.floor((double)x/(double)y);return x1;}
+int stoi( String st){String s=st.replaceFirst("^0" ,"");if( s=="0"){return 0;}return Integer.parseInt(s);}
+long log2(long num){return(long)(Math.log(num)/Math.log(2));}
+int log2(int num){return(int)(Math.log(num)/Math.log(2));}
+double log2(double num){return(double)(Math.log(num)/Math.log(2));}
+boolean isPerfectSq( int n){int s= (int)Math.sqrt(n);return  (s*s == n);}
+boolean isPerfectSq( long n){long s= (long)Math.sqrt(n);return  (s*s == n);}
+long pow(long b, long e){long res=1;b= b % mod; while(e> 0){ if((e & 1)==1){e-=1; res= (res * b) % mod; }else{ b=(b * b) % mod;e>>=1;}}return res;}
+int gcd(int a, int b){if(b==0) {return a;}return gcd(b, a % b);}
+long gcd(long a, long b){if(b==0) {return a;}return gcd(b, a % b);}
+long lcm(long a, long b){return (a/gcd(a,b)*b);}
+long abs(long a) { return Math.abs(a);}
+int  abs(int a) { return Math.abs(a);}
+int MEX(int a[]){ Set<Integer>st=new HashSet<>(); for(int i=0;i<a.length; i++){ st.add(a[i]);}int mex=0; while(st.contains(mex)) { mex++;} return mex;}
+
+int findMax(int[] a) {int m = a[0];for (int i = 1; i < a.length; i++) {if (a[i] > m) {m = a[i];}} return m;}
+long findMax(long [] a) {long m = a[0];for (int i = 1; i < a.length; i++) {if (a[i] > m) {m = a[i];}} return m;}
+int findMin(int[] a) {int m = a[0];for (int i = 1; i < a.length; i++) {if (a[i] < m) {m = a[i];}} return m;}
+long findMin(long [] a) {long m = a[0];for (int i = 1; i < a.length; i++) {if (a[i] <m) {m = a[i];}} return m;}
+long findSum(long a[]){ long sum =0;for(int i=0;i<a.length;i++){ sum+=a[i];} return sum; }
+long findSum(ArrayList<Long>a){ long sum =0;for(int i=0;i<a.size();i++){ sum+=a.get(i);} return sum; }
+
+int lower_bound(int[] a,int val) {int l = 0; int r = a.length - 1; int ans = -1 ; while (l <= r) { int m = (l + r) / 2; if (a[m] >= val) { r = m - 1; ans = m;} else {l = m + 1; }} return ans; }// lowest index ele greater then equals to val 
+int lower_bound(ArrayList<Integer> ls , int val){ int l=0;int r=ls.size()-1;int ans= -1; while( l<= r){int mid= (l+r)/2; if( ls.get(mid) >= val){  r= mid - 1;ans= mid ; }else{ l=mid+ 1;}  } return ans;}
+int upper_bound(int[] a,int val) {int l= 0; int r = a.length - 1; int ans = a.length ; while (l <= r){int m = (l + r) / 2; if (a[m] <= val ) { l = m + 1; ans = m ;} else {r = m - 1 ;} }  return ans; } // gretest index ele less then equals tp val 
+int upper_bound(ArrayList<Integer> ls , int val){int l=0;int r=ls.size()-1;  int ans= -1; while( l<= r){int mid= (l+r)/2; if( ls.get(mid)> val){ r=mid-1;  ans= ls.get(mid); }else{ l= mid+1;}}return ans;}
+
+public static void main(String args[]){FenWick sk_18 = new FenWick();sk_18.solve();}
+    public void solve() {
+          int t= 1;
+          while (t-- > 0) {
+             ans();
+    }
+    out.close();
+}  
+// ||
+    
+    int len;  //n 
+    int fen[]; // len + 1
+    void update(int i, int add){
+       while(i <= len){
+           fen[i] += add;
+           i += ( i & (-i));
+       }
+    }
+    
+    int sum(int i){
+         int s=0;
+         while(i > 0){
+             s += fen[i];
+             i -= (i & (-i));
+         }
+         return s;
+    }
+    int query(int l, int r){
+        return sum(r) - sum(l-1);
+    }
+
+    int f( int kth){
+        for(int i=0; i<= len; i++){
+            if(fen[i] >= kth){
+                  return i;
+            }
+        }
+        return 0;
+    }
+
+  public void ans() {
+     
+    
+  
+
+     
+
+     
+
+      
+  }
+}
